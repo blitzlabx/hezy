@@ -132,7 +132,7 @@ func (b *Bot) handleCallback(cq *tgbotapi.CallbackQuery) {
 		b.handleTTT(chatID, userID, data)
 	case data == "game_guess":
 		b.mu.Lock()
-		b.guess[userID] = 1 + (userID % 100)
+		b.guess[userID] = 1 + int(userID%100)
 		b.mu.Unlock()
 		b.api.Send(tgbotapi.NewMessage(chatID, "Guess a number between 1 and 100. Just send the number."))
 	case data == "tool_football":
